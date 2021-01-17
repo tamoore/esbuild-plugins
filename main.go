@@ -1,14 +1,28 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"log"
 	"os"
 
 	"github.com/evanw/esbuild/pkg/api"
+	"github.com/tamoore/esbx/internal/cmd"
 	"github.com/tamoore/esbx/pkg/plugins"
 )
 
+var entrypoints cmd.StringList
+var outdir string
+
 func main() {
+	flag.Var(&entrypoints, "entrypoint", "entrypoints to build")
+	flag.StringVar(&outdir, "outdir", "build", "the directory to output to")
+	flag.Parse()
+
+	if len(entrypoints) == 0 {
+		fmt.Fprintf(os.Stderr, "esbx: at least one entrypoint is required: recv %v\n", entrypoints)
+	}
+
 	result := api.Build(api.BuildOptions{
 		Color:             0,
 		ErrorLimit:        0,
@@ -35,7 +49,7 @@ func main() {
 		Splitting:  false,
 		Outfile:    "",
 		Metafile:   "",
-		Outdir:     "build",
+		Outdir:     outdir,
 		Outbase:    "",
 		Platform:   0,
 		Format:     0,
@@ -52,7 +66,7 @@ func main() {
 		Inject:            []string{},
 		Banner:            "",
 		Footer:            "",
-		EntryPoints:       []string{"src/app.jsx"},
+		EntryPoints:       []string(entrypoints),
 		Stdin:             &api.StdinOptions{},
 		Write:             true,
 		Incremental:       false,

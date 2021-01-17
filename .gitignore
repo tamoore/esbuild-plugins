@@ -16,3 +16,6 @@
 
 # Remove the generated binary
 esbx
+
+# Ignore the build directory
+build
