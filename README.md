@@ -1,1 +1,1 @@
-# esbuild-plugins
+# esbx
