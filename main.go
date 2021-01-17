@@ -74,7 +74,7 @@ func main() {
 
 	if len(result.Errors) > 0 {
 		for _, err := range result.Errors {
-			fmt.Fprintf(os.Stderr, "esbx: issuing building: %v\n", err)
+			fmt.Fprintf(os.Stderr, "esbx: issue building: %s\n", err.Text)
 		}
 
 		os.Exit(1)
