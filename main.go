@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/evanw/esbuild/pkg/api"
@@ -74,7 +73,7 @@ func main() {
 	})
 
 	if len(result.Errors) > 0 {
-		log.Fatal(result.Errors)
+		fmt.Fprintf(os.Stderr, "esbx: issuing building: %v\n", result.Errors)
 		os.Exit(1)
 	}
 }
