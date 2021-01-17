@@ -64,7 +64,7 @@ var HTTPModules = api.Plugin{
 
 				// Create the cache directory if it doesn't exist
 				if _, err := os.Stat(cacheDIR); os.IsNotExist(err) {
-					os.MkdirAll(cacheDIR, os.ModePerm)
+					os.MkdirAll(cacheDIR, 0700)
 				}
 
 				if _, err := os.Stat(filePath); os.IsNotExist(err) {
@@ -82,7 +82,7 @@ var HTTPModules = api.Plugin{
 						return api.OnLoadResult{}, err
 					}
 					contents = string(bytes)
-					ioutil.WriteFile(filePath, bytes, os.ModePerm)
+					ioutil.WriteFile(filePath, bytes, 0655)
 
 				} else {
 					// Read from cache
