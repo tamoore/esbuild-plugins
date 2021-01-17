@@ -1,4 +1,4 @@
-module github.com/tamoore/esbuild-plugins
+module github.com/tamoore/esbx
 
 go 1.15
 
