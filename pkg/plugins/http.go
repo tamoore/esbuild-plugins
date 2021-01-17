@@ -1,4 +1,4 @@
-package http
+package plugins
 
 import (
 	"crypto/sha256"
@@ -15,8 +15,8 @@ import (
 
 var cacheDIR = filepath.Join(xdg.CacheHome, "esbuild")
 
-// Plugin provides the http.Plugin to be used with esbuild plugins
-var Plugin = api.Plugin{
+// HTTPModules provides the http.Plugin to be used with esbuild plugins
+var HTTPModules = api.Plugin{
 	Name: "http",
 	Setup: func(build api.PluginBuild) {
 		// Intercept import paths starting with "http:" and "https:" so
